@@ -1,0 +1,49 @@
+@media (max-width: 1440px) {
+  .sec3-img-man img {
+    left: 125px;
+    /* height: 380px; */
+    bottom: 115px;
+  }
+
+  .section1 {
+    height: 100%;
+  }
+  .sec3-img-back img {
+    height: 580px;
+  }
+
+  .sec8-text p {
+    font-size: 15px;
+  }
+
+  .sec8-text-center p {
+    font-size: 18px;
+  }
+  .section1-bio .h_p h2 {
+    font-size: 35px;
+  }
+  .bio-text p {
+    font-size: 22px;
+  }
+  .book-text p {
+    font-size: 16px;
+  }
+  .section1-bio {
+    padding: 20px;
+  }
+
+  .scratch_img .bio-img figure img {
+    height: 275px;
+  }
+  .bio-img figure h4 {
+    font-size: 16px;
+  }
+  .first-book-noval figure img {
+    width: 60%;
+    height: 500px;
+  }
+
+  .back-books {
+    padding: 100px 20px;
+  }
+}
