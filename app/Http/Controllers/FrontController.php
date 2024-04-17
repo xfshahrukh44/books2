@@ -15,6 +15,7 @@ use App\Models\News;
 use App\Models\RaceTeamMember;
 use App\Models\Recycling;
 use App\Models\UsMember;
+use App\Models\Video;
 use App\Page;
 use Illuminate\Http\Request;
 
@@ -67,7 +68,9 @@ class FrontController extends Controller
 
     public function videos (Request $request)
     {
-        return view('videos');
+        $videos = Video::all();
+
+        return view('videos', compact('videos'));
     }
 
     public function blog (Request $request)
