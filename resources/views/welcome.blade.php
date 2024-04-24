@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
-@section('title', 'Home')
+@section('title', 'Author, Historian, and Professor')
+@section('description', 'Nicolas Shumway is an award-winning author, historian, and professor of Latin American studies. Learn more about his books, research, and teaching.')
 
 @section('css')
 

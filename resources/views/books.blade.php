@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
-@section('title', 'Books')
+@section('title', 'Buy the Book and Read Literary Stories')
+@section('description', "Buy the book The Education of Joshua Chastain, a novel by Nicolas Shumway, that tells the story of a gay Mormon boy in a small Arizona town.")
 
 @section('css')
     <style>

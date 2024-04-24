@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
-@section('title', 'Featured detail')
+@section('title', 'Watch the insightful videos')
+@section('description', "Watch insightful videos by Nicolas Shumway, retired from Rice University. Figure out his lectures and writing, which continue to inspire audiences worldwide.")
 
 @section('css')
 

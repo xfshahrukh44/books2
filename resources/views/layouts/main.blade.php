@@ -2,9 +2,19 @@
 <html lang="en">
 
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            New Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f)
+        ;
+        })(window,document,'script','dataLayer','GTM-KCP4BFZK');</script>
+    <!-- End Google Tag Manager -->
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="@yield('description')">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -41,6 +51,10 @@
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTMKCP4BFZK"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <div class="author-top">
         <div class="container">
@@ -198,6 +212,40 @@
     </script>
 
     <script src="{{asset('js/custom.js')}}"></script>
+
+    <script type="application/ld+json">
+        {
+         "@context": "https://schema.org",
+         "@type": "ProfessionalService",
+         "name": "Nicolas Shumway",
+         "image": "https://nicolasshumway.com/wpcontent/themes/twentyseventeen/images/top_2.png",
+         "@id": "",
+        "url": "https://nicolasshumway.com/",
+         "telephone": "5127967811",
+         "address": {
+         "@type": "PostalAddress",
+         "streetAddress": "6100 Main St, Houston",
+         "addressLocality": "Houston",
+         "addressRegion": "TX",
+         "postalCode": "77005",
+         "addressCountry": "US"
+         } ,
+         "sameAs": [
+         "https://www.facebook.com/nicolas.shumway.3/",
+         "https://www.linkedin.com/in/nicolas-shumway-2670867a/",
+         "https://twitter.com/nicolas_shumway"
+         ]
+        }
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GHBM10NHQSW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-HBM10NHQSW');
+    </script>
 
     @include('layouts.front.scripts')
     @yield('js')

@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
-@section('title', 'Bio')
+@section('title', 'Biography of Renowned Scholar & Author ')
+@section('description', 'Meet Nicolas Shumway, retired professor & author of The Education of Joshua Chastain, a novel based on his own life experiences as a gay Mormon.')
 
 @section('css')
 

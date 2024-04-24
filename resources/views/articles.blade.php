@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
-@section('title', 'Articles')
+@section('title', 'Articles on Latin American History')
+@section('description', "Read the articles by Nicolas Shumway, an author and professor of Spanish and Portuguese, on topics such as Argentina, Mexico, and the U.S.-Mexico War.")
 
 @section('css')
     <style>

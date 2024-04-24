@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
-@section('title', 'Featured')
+@section('title', "Spotlight on Shumway's New Novel")
+@section('description', "Learn about the wonderful narrative of Shumway's Newest novel! Immerse yourself in literary brilliance with this captivating spotlight feature. Don't miss out!")
 
 @section('css')
 

@@ -6,7 +6,8 @@
 {{--{!! $val_blog->short_detail !!}--}}
 @extends('layouts.main')
 
-@section('title', 'Blog')
+@section('title', 'Check out the Educational blog posts')
+@section('description', "Nicolas Shumway's enlightening educational blog, where insightful posts provide valuable perspectives on diverse topics and offer valuable knowledge.")
 
 @section('css')
 
