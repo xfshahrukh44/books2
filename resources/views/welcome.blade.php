@@ -43,7 +43,7 @@
                 <div class="col-lg-12 p-0">
                     <div class="sec4-main-img">
                         <figure>
-                            <img src="{{asset('images/BRAND-IMG.png')}}" class="img-fluid" alt="">
+                            <img src="{{asset('images/BRAND-IMG.png')}}" class="img-fluid" alt="logo">
                         </figure>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                     <div class="sec3-img">
                         <div class="sec3-img-man">
                             <figure>
-                                <img src="{{asset($page->sections[3]->value ?? 'images/man-2.png')}}" class="img-fluid" alt="">
+                                <img src="{{asset($page->sections[3]->value ?? 'images/man-2.png')}}" class="img-fluid" alt="Nicolas Shumway"> 
                             </figure>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                         <div class="sec6-opt">
                             <div class="sec6-opt-img">
                                 <figure>
-                                    <img src="{{asset($popular_book->image ?? 'images/book5.png')}}" class="img-fluid" alt="">
+                                    <img src="{{asset($popular_book->image ?? 'images/book5.png')}}" class="img-fluid" alt="{{$popular_book->alt_tag}}">
                                 </figure>
                             </div>
                             <!-- <div class="sec6-opt-text">
@@ -146,7 +146,7 @@
                 <div class="col-lg-6" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
                     <div class="sec7-img-book">
                         <figure>
-                            <img src="{{asset('images/old-person.webp')}}" class="img-fluid" alt="">
+                            <img src="{{asset('images/old-person.webp')}}" class="img-fluid" alt="Boy">
                         </figure>
                     </div>
                 </div>

@@ -17,7 +17,7 @@
 
                         <div class="sec3-img-man">
                             <figure>
-                                <img src="{{asset($page->sections[1]->value ?? 'images/man-2.png')}}" class="img-fluid" alt="">
+                                <img src="{{asset($page->sections[1]->value ?? 'images/man-2.png')}}" class="img-fluid" alt="Nicolas Shumway">
                             </figure>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                 <div class="col-lg-12 p-0">
                     <div class="sec4-main-img">
                         <figure>
-                            <img src="{{asset('images/BRAND-IMG.png')}}" class="img-fluid" alt="">
+                            <img src="{{asset('images/BRAND-IMG.png')}}" class="img-fluid" alt="logo">
                         </figure>
                     </div>
                 </div>
