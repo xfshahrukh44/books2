@@ -110,6 +110,11 @@
                                         Videos
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('contact')}}">
+                                        CONTACT 
+                                    </a>
+                                </li>
                                 <!-- <li class="nav-item">
                                     <a class="nav-link" href="#">
                                         Photos

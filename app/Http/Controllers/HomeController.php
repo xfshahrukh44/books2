@@ -170,19 +170,39 @@ class HomeController extends Controller
     public function careerSubmit(Request $request)
     {
 
+        // dd($request->all());
        
         $inquiry = inquiry::create($request->all());
-        $string = '<strong>Name: </strong> '.$inquiry->fname.' <br /> <strong>Email: </strong> ' . $inquiry->email;
-
-        Mail::send([], [], function($message) use ($string) {
-            $message->setBody($string, 'text/html');
-            $message->from(env('MAIL_FROM_ADDRESS') ?? 'custombackend@gmail.com', 'User contact');
-            $message->to(['nshumway@nicolasshumway.com', 'ns45@nicolasshumway.com'])->subject('User contact');
+        
+        $emails = "info@nicolasshumway.com";
+        
+        $data = [
+            'name' => $request->fname,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'notes' => $request->notes
+        ];
+        
+        
+        $subject = 'NICOLAS SHUMWAY - CONTACT FORM SUBMISSION';
+        Mail::send('mail',$data, function($message) use ($emails, $subject){
+            $message->from(config('services.mail.username'), 'NICOLAS SHUMWAY');
+            $message->to(['nshumway@nicolasshumway.com', 'ns45@nicolasshumway.com'])->subject($subject);
         });
-
-
-        return response()->json(['message'=>'Thank you for contacting us. We will get back to you asap', 'status' => true]);
+        
+        return response()->json(['message' => 'Thank you for contacting us. We will get back to you asap', 'status' => true]);
         return back();
+        
+        
+        // $string = '<strong>Name: </strong> '.$inquiry->fname.' <br /> <strong>Email: </strong> ' . $inquiry->email;
+
+        // Mail::send([], [], function($message) use ($string) {
+        //     $message->setBody($string, 'text/html');
+        //     $message->from(env('MAIL_FROM_ADDRESS') ?? 'custombackend@gmail.com', 'User contact');
+        //     $message->to(['nshumway@nicolasshumway.com', 'ns45@nicolasshumway.com'])->subject('User contact');
+        // });
+
+
     }
 
     public function newsletterSubmit(Request $request){
@@ -193,17 +213,33 @@ class HomeController extends Controller
             $inquiry->newsletter_email = $request->newsletter_email;
             $inquiry->save();
 
-
-            $string = '<strong>Email: </strong> '.$inquiry->newsletter_email;
-
-            Mail::send([], [], function($message) use ($string) {
-                $message->setBody($string, 'text/html');
-                $message->from(env('MAIL_FROM_ADDRESS') ?? 'custombackend@gmail.com', 'Newsletter subscription');
-                $message->to(['nshumway@nicolasshumway.com', 'ns45@nicolasshumway.com'])->subject('Newsletter subscription');
+            
+            $emails = "info@nicolasshumway.com";
+            
+            $data = [
+                'email' => $request->newsletter_email,
+            ];
+            
+            
+            $subject = 'NICOLAS SHUMWAY - NEW SUBSCRIBER';
+            Mail::send('newsletter_template',$data, function($message) use ($emails, $subject){
+                $message->from(config('services.mail.username'), 'NICOLAS SHUMWAY');
+                $message->to(['nshumway@nicolasshumway.com', 'ns45@nicolasshumway.com'])->subject($subject);
             });
+            
+            
+            // $string = '<strong>Email: </strong> '.$inquiry->newsletter_email;
+
+            // Mail::send([], [], function($message) use ($string) {
+            //     $message->setBody($string, 'text/html');
+            //     $message->from(env('MAIL_FROM_ADDRESS') ?? 'custombackend@gmail.com', 'Newsletter subscription');
+            //     $message->to(['nshumway@nicolasshumway.com', 'ns45@nicolasshumway.com'])->subject('Newsletter subscription');
+            // });
 
 
             return response()->json(['message'=>'Thank you for contacting us. We will get back to you asap', 'status' => true]);
+            return back();
+            
             
         }else{
             return response()->json(['message'=>'Email already exists', 'status' => false]);

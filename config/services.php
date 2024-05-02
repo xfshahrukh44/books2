@@ -23,6 +23,11 @@ return [
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
+    
+    'mail' => [
+        'username' => 'info@nicolasshumway.com',
+    ],
+
 
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),

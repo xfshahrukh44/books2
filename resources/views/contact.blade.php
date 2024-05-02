@@ -41,21 +41,21 @@
                                 <i class="fa-brands fa-facebook-f"></i>
                                 <div class="contat-wrap">
                                     <h6>Facebook</h6>
-                                    <p><a href="#">Author_Official</a></p>
+                                    <p><a href="{{App\Http\Traits\HelperTrait::returnFlag(682)}}">VISIT PROFILE</a></p>
                                 </div>
                             </li>
                             <li>
                                 <i class="fa-brands fa-instagram"></i>
                                 <div class="contat-wrap">
                                     <h6>Instagram</h6>
-                                    <p><a href="#">Author_Official</a></p>
+                                    <p><a href="{{App\Http\Traits\HelperTrait::returnFlag(1962)}}">VISIT PROFILE</a></p>
                                 </div>
                             </li>
                             <li>
                                 <i class="fa-brands fa-twitter"></i>
                                 <div class="contat-wrap">
                                     <h6>Twitter</h6>
-                                    <p><a href="#">Author_Official</a></p>
+                                    <p><a href="{{App\Http\Traits\HelperTrait::returnFlag(1960)}}">VISIT PROFILE </a></p>
                                 </div>
                             </li>
                         </ul>
@@ -81,7 +81,7 @@
                                     <div class="innerForm">
 
                                         <label for="exampleInputEmail1"> Phone Number</label>
-                                        <input type="text" class="form-control" aria-describedby="emailHelp" required="" placeholder="Your Number*">
+                                        <input type="text" class="form-control" name="phone" aria-describedby="emailHelp" required="" placeholder="Your Number*">
                                     </div>
 
                                 </div>
