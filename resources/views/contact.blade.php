@@ -4,6 +4,16 @@
 
 @section('css')
 
+<style>
+    
+    .about-inner {
+        position: relative;
+        z-index: 0;
+        padding-top: 80px !important;
+    }
+    
+</style>
+
 @endsection
 
 
@@ -14,13 +24,19 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="three-img">
+                        
+                        <h1>Send us a message</span></h1>
+                        
                         <div class="btn-flux">
                             <a class="btn btn-custom about" type="submit">Contact Us</a>
                         </div>
-                        <div class="buld-img">
-                            <h2>Lorem Ipsum is simply dummy text of the printing and typesetting<span> industry. Lorem Ipsum
-                                        has been the industry's standard.</span> </h2>
-                        </div>
+                        
+                        
+                        <!--<div class="buld-img">-->
+                        <!--    <h2>Lorem Ipsum is simply dummy text of the printing and typesetting<span> industry. Lorem Ipsum-->
+                        <!--                has been the industry's standard.</span> </h2>-->
+                        <!--</div>-->
+                        
                     </div>
                 </div>
             </div>
@@ -30,38 +46,42 @@
     <section class="bginner ContactPage">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-12 p-0">
-                    <div class="contact-info">
-                        <div class="conatct-heading">
-                            <h1>Send us a message</span></h1>
-                            <p>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem </p>
-                        </div>
-                        <ul class="contact-socails-address">
-                            <li>
-                                <i class="fa-brands fa-facebook-f"></i>
-                                <div class="contat-wrap">
-                                    <h6>Facebook</h6>
-                                    <p><a href="{{App\Http\Traits\HelperTrait::returnFlag(682)}}">VISIT PROFILE</a></p>
-                                </div>
-                            </li>
-                            <li>
-                                <i class="fa-brands fa-instagram"></i>
-                                <div class="contat-wrap">
-                                    <h6>Instagram</h6>
-                                    <p><a href="{{App\Http\Traits\HelperTrait::returnFlag(1962)}}">VISIT PROFILE</a></p>
-                                </div>
-                            </li>
-                            <li>
-                                <i class="fa-brands fa-twitter"></i>
-                                <div class="contat-wrap">
-                                    <h6>Twitter</h6>
-                                    <p><a href="{{App\Http\Traits\HelperTrait::returnFlag(1960)}}">VISIT PROFILE </a></p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-8 col-12">
+                
+                
+                <!--<div class="col-md-4 col-12 p-0">-->
+                    <!--<div class="contact-info">-->
+                        <!--<div class="conatct-heading">-->
+                        <!--    <h1>Send us a message</span></h1>-->
+                        <!--    <p>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem </p>-->
+                        <!--</div>-->
+                        <!--<ul class="contact-socails-address">-->
+                        <!--    <li>-->
+                        <!--        <i class="fa-brands fa-facebook-f"></i>-->
+                        <!--        <div class="contat-wrap">-->
+                        <!--            <h6>Facebook</h6>-->
+                        <!--            <p><a href="{{App\Http\Traits\HelperTrait::returnFlag(682)}}">VISIT PROFILE</a></p>-->
+                        <!--        </div>-->
+                        <!--    </li>-->
+                        <!--    <li>-->
+                        <!--        <i class="fa-brands fa-instagram"></i>-->
+                        <!--        <div class="contat-wrap">-->
+                        <!--            <h6>Instagram</h6>-->
+                        <!--            <p><a href="{{App\Http\Traits\HelperTrait::returnFlag(1962)}}">VISIT PROFILE</a></p>-->
+                        <!--        </div>-->
+                        <!--    </li>-->
+                        <!--    <li>-->
+                        <!--        <i class="fa-brands fa-twitter"></i>-->
+                        <!--        <div class="contat-wrap">-->
+                        <!--            <h6>Twitter</h6>-->
+                        <!--            <p><a href="{{App\Http\Traits\HelperTrait::returnFlag(1960)}}">VISIT PROFILE </a></p>-->
+                        <!--        </div>-->
+                        <!--    </li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                <!--</div>-->
+                
+                
+                <div class="col-md-12 col-12">
                     <div class="COntactinfo">
                         <form class="form_submission" id="contactform" method="post">
 
