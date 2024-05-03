@@ -5,6 +5,20 @@
 
 @section('css')
 
+<style>
+    
+    
+#audio-control {
+  cursor:pointer;
+  padding: 10px 20px;
+  background:#4d0000;
+  color: #fff;
+  border-radius: 4px;
+  display: inline-block;
+}
+    
+</style>
+
 @endsection
 
 
@@ -16,11 +30,11 @@
                 <div class="col-lg-6">
                     <div class="now-noval">
                         {!! $page->sections[0]->value ?? '' !!}
-{{--                        <h2>Available Now!</h2>--}}
-{{--                        <p>--}}
-{{--                            A coming-out and coming-of-age story, The Education of Joshua Chastain is the fictionalized memoir of a Mormon gay boy who grows up in a small LDS settlement in northern Arizona, a kind of Mormon shtetl. Centered mostly on Josh’s teenage years in the late 1960s and early 1970s, the novel tells how Josh discovers his sexuality, has several sexual affairs as a teenager (including one with a Roman Catholic priest), and endures <span id="dots">...</span><span id="more">verbal and occasional physical abuse from both high school teachers and classmates. When a sexual bully outs Josh in his junior year, his parents send him to a clinic in Phoenix run by a Mormon psychologist who specializes in “curing” homosexuals. Frightened by the clinic’s aversion therapy techniques, Josh flees to Los Angeles where he lives briefly with an abusive lover and is later forced to support himself as a prostitute. Permeating the narration is Josh’s struggle with the homophobia of his Mormon upbringing, a process that eventually leads to his excommunication. Musically and academically gifted, he eventually finds deliverance in higher education and in more accepting religious communities. Throughout his journey, he meets many fascinating characters including kind, supportive people as well as wannabe rapists.</span></p>--}}
+                        {{--<h2>Available Now!</h2>--}}
+                        {{--<p>--}}
+                        {{-- A coming-out and coming-of-age story, The Education of Joshua Chastain is the fictionalized memoir of a Mormon gay boy who grows up in a small LDS settlement in northern Arizona, a kind of Mormon shtetl. Centered mostly on Josh’s teenage years in the late 1960s and early 1970s, the novel tells how Josh discovers his sexuality, has several sexual affairs as a teenager (including one with a Roman Catholic priest), and endures <span id="dots">...</span><span id="more">verbal and occasional physical abuse from both high school teachers and classmates. When a sexual bully outs Josh in his junior year, his parents send him to a clinic in Phoenix run by a Mormon psychologist who specializes in “curing” homosexuals. Frightened by the clinic’s aversion therapy techniques, Josh flees to Los Angeles where he lives briefly with an abusive lover and is later forced to support himself as a prostitute. Permeating the narration is Josh’s struggle with the homophobia of his Mormon upbringing, a process that eventually leads to his excommunication. Musically and academically gifted, he eventually finds deliverance in higher education and in more accepting religious communities. Throughout his journey, he meets many fascinating characters including kind, supportive people as well as wannabe rapists.</span></p>--}}
                         <div class="read-btn">
-{{--                            <a href="#" class="btn btn-custom" onclick="myFunction()" id="myBtn">Read More</a>--}}
+                            {{--<a href="#" class="btn btn-custom" onclick="myFunction()" id="myBtn">Read More</a>--}}
                             <a href="{{route('front.bio')}}" class="btn btn-custom" id="myBtn">Read More</a>
                             <a href="{{route('front.bio')}}" class="btn btn-custom">Interview with the Author</a>
                         </div>
@@ -50,6 +64,40 @@
             </div>
         </div>
     </section>
+    
+    
+     <section class="section3" id="about-sec">
+        <div class="container-fluid">
+            <div class="row">
+                
+                <div class="col-lg-1"></div>
+                
+                <div class="col-lg-10" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                    <div class="sec3-img">
+                        <div class="sec3-img-man">
+                            <!--<figure>-->
+                            <!--    <img src="{{asset($page->sections[3]->value ?? 'images/man-2.png')}}" class="img-fluid" alt="Nicolas Shumway"> -->
+                            <!--</figure>-->
+                            
+                            <video id="myVideo" width="100%" height="100%" autoplay muted controls loop>
+                               <source src="{{ asset('videos/Nicolas_intro_1.mp4') }}" type="video/mp4">
+                              
+                            </video>
+                            
+                            <br><br>
+                            
+                            <div id="audio-control" class="muted">Unmute</div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-1"></div>
+                
+            </div>
+        </div>
+    </section>
+    
 
     <section class="section3" id="about-sec">
         <div class="container-fluid">
@@ -157,5 +205,20 @@
 @endsection
 
 @section('js')
-    <script type="text/javascript"></script>
+   
+
+<script>
+
+$('#audio-control').click(function(){
+    if( $("#myVideo").prop('muted') ) {
+          $("#myVideo").prop('muted', false);
+          $(this).text('Mute');
+      // or toggle class, style it with a volume icon sprite, change background-position
+    } else {
+      $("#myVideo").prop('muted', true);
+      $(this).text('Unmute');
+    }
+});
+</script>
+   
 @endsection
