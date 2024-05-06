@@ -147,7 +147,7 @@ class VideoController extends Controller
         if(auth()->user()->permissions()->where('name','=','edit-'.$model)->first()!= null) {
             $this->validate($request, [
 			'title' => 'required',
-			'video' => 'required'
+// 			'video' => 'required'
 		]);
             $requestData = $request->all();
             
