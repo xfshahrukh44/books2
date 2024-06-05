@@ -24,6 +24,22 @@
                 <input class="form-control dropify" name="image" type="file" id="image" {{ ($blog->image != '') ? "data-default-file = /$blog->image" : ''}} {{ ($blog->image == '') ? "required" : ''}} value="{{$blog->image}}">
             </div>
         </div>
+        
+         <div class="col-md-12">
+            <div class="form-group">
+                {!! Form::label('byperson', 'By Person') !!}
+                {!! Form::text('byperson', null, ('required' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+            </div>
+        </div>
+        
+         <div class="col-md-12">
+            <div class="form-group">
+                {!! Form::label('price', 'Price') !!}
+                {!! Form::text('price', null, ('required' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+            </div>
+        </div>
+        
+        
     </div>
 </div>
 

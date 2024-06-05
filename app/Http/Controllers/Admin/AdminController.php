@@ -90,14 +90,11 @@ class AdminController extends Controller
 			if(is_array($imagetable)) {
 				
 				$file = $request->file('image');
-			
-                $destination_path = public_path('uploads/imagetable/');
-                $profileImage = date("Ymd").".".$file->getClientOriginalExtension();
-
-                Image::make($file)->resize(16, 16)->save($destination_path . DIRECTORY_SEPARATOR. $profileImage);
+                $imagename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->move(public_path('uploads/imagetable'), $imagename);
 
 				$image = new imagetable;				
-                $image->img_path = 'uploads/imagetable/'.$profileImage;
+                $image->img_path = 'uploads/imagetable/'.$imagename;
 				$image->table_name = 'favicon';
                 $image->save();
 				
@@ -107,24 +104,21 @@ class AdminController extends Controller
 				if ($request->hasFile('image')) {
 					$image_path = public_path($imagetable->img_path);
 					
-					if(File::exists($image_path)) {
-						File::delete($image_path);
-					}
-				
-					$file = $request->file('image');
-					$fileNameExt = $request->file('image')->getClientOriginalName();
-					$fileNameForm = str_replace(' ', '_', $fileNameExt);
-					$fileName = pathinfo($fileNameForm, PATHINFO_FILENAME);
-					$fileExt = $request->file('image')->getClientOriginalExtension();
-					$fileNameToStore = $fileName.'_'.time().'.'.$fileExt;
+					if (isset($image_path) && file_exists(public_path($image_path))) {
+                        unlink(public_path($image_path));
+                    }
+                    
+                    $file = $request->file('image');
+                    $imagename = time() . '_' . $file->getClientOriginalName();
+                    $path = $file->move(public_path('uploads/imagetable/'), $imagename);
 					
 					
-					$pathToStore = public_path('uploads/imagetable/');
-					Image::make($file)->resize(16, 16)->save($pathToStore . DIRECTORY_SEPARATOR. $fileNameToStore);
+				// 	$pathToStore = public_path('uploads/imagetable/');
+				// 	Image::make($file)->resize(16, 16)->save($pathToStore . DIRECTORY_SEPARATOR. $fileNameToStore);
 
 				
 					imagetable::where('table_name', 'favicon')
-							->update(['img_path' => 'uploads/imagetable/'.$fileNameToStore]);
+							->update(['img_path' => 'uploads/imagetable/'.$imagename]);
 					
 				}
 				
@@ -157,16 +151,17 @@ class AdminController extends Controller
 			$imagetable = imagetable::where('table_name', 'logo')->first();
 			
 			if(is_array($imagetable)) {
-				
-				$file = $request->file('image');
 			
-                $destination_path = public_path('uploads/imagetable/');
-                $profileImage = date("Ymd").".".$file->getClientOriginalExtension();
+                // $destination_path = public_path('uploads/imagetable/');
+                // $profileImage = date("Ymd").".".$file->getClientOriginalExtension();
 
-                Image::make($file)->save($destination_path . DIRECTORY_SEPARATOR. $profileImage);
+                // Image::make($file)->save($destination_path . DIRECTORY_SEPARATOR. $profileImage);
+                $file = $request->file('image');
+                $imagename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->move(public_path('uploads/imagetable'), $imagename);
 
 				$image = new imagetable;				
-                $image->img_path = 'uploads/imagetable/'.$profileImage;
+                $image->img_path = 'uploads/imagetable/'.$imagename;
 				$image->table_name = 'logo';
                 $image->save();
 				
@@ -177,24 +172,28 @@ class AdminController extends Controller
 					
 					$image_path = public_path($imagetable->img_path);
 					
-					if(File::exists($image_path)) {
-						File::delete($image_path);
-					}
+					if (isset($image_path) && file_exists(public_path($image_path))) {
+                        unlink(public_path($image_path));
+                    }
+                    
+                    $file = $request->file('image');
+                    $imagename = time() . '_' . $file->getClientOriginalName();
+                    $path = $file->move(public_path('uploads/imagetable/'), $imagename);
 				
-					$file = $request->file('image');
-					$fileNameExt = $request->file('image')->getClientOriginalName();
-					$fileNameForm = str_replace(' ', '_', $fileNameExt);
-					$fileName = pathinfo($fileNameForm, PATHINFO_FILENAME);
-					$fileExt = $request->file('image')->getClientOriginalExtension();
-					$fileNameToStore = $fileName.'_'.time().'.'.$fileExt;
+				// 	$file = $request->file('image');
+				// 	$fileNameExt = $request->file('image')->getClientOriginalName();
+				// 	$fileNameForm = str_replace(' ', '_', $fileNameExt);
+				// 	$fileName = pathinfo($fileNameForm, PATHINFO_FILENAME);
+				// 	$fileExt = $request->file('image')->getClientOriginalExtension();
+				// 	$fileNameToStore = $fileName.'_'.time().'.'.$fileExt;
 					
 					
-					$pathToStore = public_path('uploads/imagetable/');
-					Image::make($file)->save($pathToStore . DIRECTORY_SEPARATOR. $fileNameToStore);
+				// 	$pathToStore = public_path('uploads/imagetable/');
+				// 	Image::make($file)->save($pathToStore . DIRECTORY_SEPARATOR. $fileNameToStore);
 
 				
 					imagetable::where('table_name', 'logo')
-							->update(['img_path' => 'uploads/imagetable/'.$fileNameToStore]);
+							->update(['img_path' => 'uploads/imagetable/'.$imagename]);
 					
 				}
 

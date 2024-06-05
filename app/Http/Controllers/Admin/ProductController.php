@@ -179,15 +179,24 @@ class ProductController extends Controller
             $product->description = $request->input('description');   
             $product->additional_information = $request->input('additional_information');   
             
-            $file = $request->file('image');
+            // $file = $request->file('image');
             
-            //make sure yo have image folder inside your public
-            $destination_path = 'uploads/products/';
-            $profileImage = date("Ymdhis").".".$file->getClientOriginalExtension();
+            // //make sure yo have image folder inside your public
+            // $destination_path = 'uploads/products/';
+            // $profileImage = date("Ymdhis").".".$file->getClientOriginalExtension();
            
-            Image::make($file)->save(public_path($destination_path) . DIRECTORY_SEPARATOR. $profileImage);
+            // Image::make($file)->save(public_path($destination_path) . DIRECTORY_SEPARATOR. $profileImage);
+            
+            if ($request->hasFile('image')) {
 
-            $product->image = $destination_path.$profileImage;
+                $file = $request->file('image');
+                $imagename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->move(public_path('uploads/products'), $imagename);
+            
+                $product->image = 'uploads/products/' . $imagename;
+            }
+
+            // $product->image = $destination_path.$profileImage;
             $product->save();
             
             
@@ -340,27 +349,38 @@ class ProductController extends Controller
         // 'images'=>  implode("|",$images),
     // ]);
 
-        if ($request->hasFile('image')) {
+//         if ($request->hasFile('image')) {
 			
-			$product = product::where('id', $id)->first();
-			$image_path = public_path($product->image);	
+// 			$product = product::where('id', $id)->first();
+// 			$image_path = public_path($product->image);	
 			
-			if(File::exists($image_path)) {
+// 			if(File::exists($image_path)) {
 				
-				File::delete($image_path);
-			} 
+// 				File::delete($image_path);
+// 			} 
 
-            $file = $request->file('image');
-            $fileNameExt = $request->file('image')->getClientOriginalName();
-            $fileNameForm = str_replace(' ', '_', $fileNameExt); 
-            $fileName = pathinfo($fileNameForm, PATHINFO_FILENAME);
-            $fileExt = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$fileExt;
-            $pathToStore = public_path('uploads/products/');
-            Image::make($file)->save($pathToStore . DIRECTORY_SEPARATOR. $fileNameToStore);
+//             $file = $request->file('image');
+//             $fileNameExt = $request->file('image')->getClientOriginalName();
+//             $fileNameForm = str_replace(' ', '_', $fileNameExt); 
+//             $fileName = pathinfo($fileNameForm, PATHINFO_FILENAME);
+//             $fileExt = $request->file('image')->getClientOriginalExtension();
+//             $fileNameToStore = $fileName.'_'.time().'.'.$fileExt;
+//             $pathToStore = public_path('uploads/products/');
+//             Image::make($file)->save($pathToStore . DIRECTORY_SEPARATOR. $fileNameToStore);
 			
-			$requestData['image'] = 'uploads/products/'.$fileNameToStore;               
-        }
+// 			$requestData['image'] = 'uploads/products/'.$fileNameToStore;               
+//         }
+        if ($request->hasFile('image')) {
+                $product = product::where('id', $id)->first();
+                if (isset($product->image) && file_exists(public_path($product->image))) {
+                    unlink(public_path($product->image));
+                }
+                $file = $request->file('image');
+                $imagename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->move(public_path('uploads/products/'), $imagename);
+                $requestData['image'] = 'uploads/products/'.$imagename;
+
+            }
 		
             if(! is_null(request('images'))) {
                 

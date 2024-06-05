@@ -24,16 +24,19 @@
                             <span data-i18n="Sales">Logo Management</span>
                         </a>
                     </li>
-{{--                    <li class="{{ (request()->routeIs('admin.banner.index') || request()->routeIs('admin.banner.create') || request()->routeIs('admin.banner.edit')) ? 'active' : '' }}">--}}
+                    
+{{--                <li class="{{ (request()->routeIs('admin.banner.index') || request()->routeIs('admin.banner.create') || request()->routeIs('admin.banner.edit')) ? 'active' : '' }}"> --}}
 {{--                        <a class="menu-item" href="{{url('admin/banner')}}"><i></i>--}}
 {{--                            <span data-i18n="Sales">Banner Management</span>--}}
 {{--                        </a>--}}
-{{--                    </li>--}}
+{{--                </li>--}}
+                    
                     <li class="{{ (request()->routeIs('admin.config.setting'))? 'active' : '' }}">
                         <a class="menu-item" href="{{url('admin/config/setting')}}"><i></i>
                             <span data-i18n="Sales">Config</span>
                         </a>
                     </li>
+                    
                 </ul>
             </li>
             <li class="nav-item">
@@ -104,11 +107,12 @@
 {{--                    </li>--}}
 {{--                </ul>--}}
 {{--            </li>--}}
-{{--            <li class="nav-item">--}}
-{{--                <a href="{{url('admin/blog')}}" target="_blank"><i class="la la-tags"></i>--}}
-{{--                    <span class="menu-title" data-i18n="eCommerce">Blog</span>--}}
-{{--                </a>--}}
-{{--            </li>--}}
+            
+            <li class="nav-item">
+                <a href="{{url('admin/blog')}}" target="_blank"><i class="la la-tags"></i>
+                    <span class="menu-title" data-i18n="eCommerce">Blog</span>
+                </a>
+            </li>
 
             <!-- <li class="nav-item {{ (request()->is('admin/testimonial') || request()->is('admin/testimonial/*')) ? 'active' : '' }}">
                 <a href="{{url('admin/testimonial')}}"><i class="la la-quote-left"></i>

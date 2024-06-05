@@ -138,9 +138,9 @@ class HomeController extends Controller
          
     public function blog()
     { 
-       $page = DB::table('pages')->where('id', 1)->first();
+       $page = DB::table('pages')->where('id', 9)->first();
        
-       $blog = DB::table('blogs')->get();
+       $blog = DB::table('blogs')->where('id', 'DESC')->first();
 
        return view('blog', compact('page', 'blog'));
     }
@@ -164,6 +164,32 @@ class HomeController extends Controller
  
        return view('contact', compact('page'));
     }
+    
+    
+    public function term_of_services()
+    {
+
+        $page = Page::find(2);
+       $section = DB::table('section')->where('page_id', 7)->get();
+       
+       
+       return view('term_of_services', compact('page', 'section'));
+    }
+    
+    
+    
+        
+    public function privacy_policy()
+    {
+
+        $page = Page::find(2);
+       $section = DB::table('section')->where('page_id', 7)->get();
+       
+       
+       return view('privacy_policy', compact('page', 'section'));
+    }
+    
+    
     
 
 

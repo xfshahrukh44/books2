@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Blog;
 use Illuminate\Http\Request;
-use Image;
+use Intervention\Image\Facades\Image;
 use File;
 
 class BlogController extends Controller
@@ -77,29 +77,24 @@ class BlogController extends Controller
             $this->validate($request, [
 			'name' => 'required',
 			'short_detail' => 'required',
-			'detail' => 'required',
-			'image' => 'required'
+// 			'detail' => 'required',
+			'image' => 'required',
+			'byperson' => 'required',
+			'price' => 'required'
 		]);
 
-            if ($request->hasFile('image')) {
-                $blog = new blog;
-
+           $book = new Blog($request->all());
            
-                $blog->name = $request->input('name');   
-                $blog->short_detail = $request->input('short_detail');     
-                $blog->detail = $request->input('detail');
+           if ($request->hasFile('image')) {
+
                 $file = $request->file('image');
-                
-                //make sure yo have image folder inside your public
-                $destination_path = 'uploads/blogs/';
-                $fileName = $file->getClientOriginalName();
-                $profileImage = date("Ymd").$fileName.".".$file->getClientOriginalExtension();
-
-                Image::make($file)->save(public_path($destination_path) . DIRECTORY_SEPARATOR. $profileImage);
-
-                $blog->image = $destination_path.$profileImage;
-                $blog->save();
+                $imagename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->move(public_path('uploads/blogs'), $imagename);
+            
+                $book->image = 'uploads/blogs/' . $imagename;
             }
+            
+            $book->save();
 
             return redirect('admin/blog')->with('message', 'Blog added!');
         }
@@ -155,31 +150,43 @@ class BlogController extends Controller
             $this->validate($request, [
 			'name' => 'required',
 			'short_detail' => 'required',
-			'detail' => 'required',
+// 			'detail' => 'required',
 		]);
             $requestData = $request->all();
             
 
+        // if ($request->hasFile('image')) {
+            
+        //     $blog = blog::where('id', $id)->first();
+        //     $image_path = public_path($blog->image); 
+            
+        //     if(File::exists($image_path)) {
+        //         File::delete($image_path);
+        //     }
+
+        //     $file = $request->file('image');
+        //     $fileNameExt = $request->file('image')->getClientOriginalName();
+        //     $fileNameForm = str_replace(' ', '_', $fileNameExt);
+        //     $fileName = pathinfo($fileNameForm, PATHINFO_FILENAME);
+        //     $fileExt = $request->file('image')->getClientOriginalExtension();
+        //     $fileNameToStore = $fileName.'_'.time().'.'.$fileExt;
+        //     $pathToStore = public_path('uploads/blogs/');
+        //     Image::make($file)->save($pathToStore . DIRECTORY_SEPARATOR. $fileNameToStore);
+
+        //      $requestData['image'] = 'uploads/blogs/'.$fileNameToStore;               
+        // }
+        
         if ($request->hasFile('image')) {
-            
-            $blog = blog::where('id', $id)->first();
-            $image_path = public_path($blog->image); 
-            
-            if(File::exists($image_path)) {
-                File::delete($image_path);
+                $blog = blog::where('id', $id)->first();
+                if (isset($blog->image) && file_exists(public_path($blog->image))) {
+                    unlink(public_path($blog->image));
+                }
+                $file = $request->file('image');
+                $imagename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->move(public_path('uploads/blogs/'), $imagename);
+                $requestData['image'] = 'uploads/blogs/'.$imagename;
+
             }
-
-            $file = $request->file('image');
-            $fileNameExt = $request->file('image')->getClientOriginalName();
-            $fileNameForm = str_replace(' ', '_', $fileNameExt);
-            $fileName = pathinfo($fileNameForm, PATHINFO_FILENAME);
-            $fileExt = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$fileExt;
-            $pathToStore = public_path('uploads/blogs/');
-            Image::make($file)->save($pathToStore . DIRECTORY_SEPARATOR. $fileNameToStore);
-
-             $requestData['image'] = 'uploads/blogs/'.$fileNameToStore;               
-        }
 
 
             $blog = Blog::findOrFail($id);

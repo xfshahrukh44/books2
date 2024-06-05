@@ -25,7 +25,19 @@ class Blog extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'created_at', 'short_detail', 'detail', 'image'];
+     
+    protected $fillable = ['name', 'created_at', 'short_detail', 'detail', 'image' , 'byperson' , 'price'];
+    
+    protected $appends = ['image_link'];
+    
+    public function getImageLinkAttribute()
+    {
+        if (!empty($this->image)) {
+            return url($this->image);
+        } else {
+            return url('assets/imgs/noimage.png');
+        }
+    }
 
     
 }

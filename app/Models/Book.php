@@ -38,6 +38,17 @@ class Book extends Model
 
         return rtrim($trimmedText) . '...';
     }
+    
+    protected $appends = ['image_link'];
+
+    public function getImageLinkAttribute()
+    {
+        if (!empty($this->image)) {
+            return url($this->image);
+        } else {
+            return url('assets/imgs/noimage.png');
+        }
+    }
 
     
 }

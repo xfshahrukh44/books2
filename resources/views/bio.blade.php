@@ -190,7 +190,7 @@
                 </div>
                 <div class="col-lg-3">
                     @php
-                        $book = \App\Models\Book::find(2);
+                        $book = \App\Models\Book::find(3);
                     @endphp
                     <div class="bio-img">
                         <figure>

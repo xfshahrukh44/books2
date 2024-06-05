@@ -79,8 +79,8 @@
                             <!--    <img src="{{asset($page->sections[3]->value ?? 'images/man-2.png')}}" class="img-fluid" alt="Nicolas Shumway"> -->
                             <!--</figure>-->
                             
-                            <video id="myVideo" width="100%" height="100%" autoplay muted controls loop>
-                               <source src="{{ asset('videos/Nicolas_intro_1.mp4') }}" type="video/mp4">
+                            <video class="lazy" data-src="{{ asset('videos/Nicolas_intro_1.mp4') }}" data-poster="{{asset('images/poster-video.jpg')}}" id="myVideo" width="100%" height="100%" muted controls controlsList="nodownload">
+                               <source data-src="{{ asset('videos/Nicolas_intro_1.mp4') }}" type="video/mp4">
                               
                             </video>
                             
@@ -106,7 +106,7 @@
                     <div class="sec3-img">
                         <div class="sec3-img-man">
                             <figure>
-                                <img src="{{asset($page->sections[3]->value ?? 'images/man-2.png')}}" class="img-fluid" alt="Nicolas Shumway"> 
+                                <img data-src="{{asset($page->sections[3]->value ?? 'images/man-2.png')}}" class="img-fluid lazy" alt="Nicolas Shumway"> 
                             </figure>
                         </div>
                     </div>
@@ -115,13 +115,7 @@
                 <div class="col-lg-6" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
                     <div class="sec3-text">
                         {!! $page->sections[2]->value !!}
-{{--                        <h1 class="lax lax_preset_fadeIn:50:100 lax_preset_spin">More About<span>Author</span></h1>--}}
-{{--                        <p>Born in a Presbyterian mission hospital on the Navajo Reservation, Nicolas Shumway was raised in--}}
-{{--                            St. Johns, Arizona, a small farming and ranching community in the northeastern corner of the--}}
-{{--                            state. His father owned a garage and tire shop, and his mother taught grade-school music. His--}}
-{{--                            first name—Nicolas without an “h”—follows the French spelling which his mother got from a--}}
-{{--                            popular violin method book written by a Frenchman, Nicolas Laoureux.</p>--}}
-
+                        
                         <a href="{{route('front.bio')}}" class="btn btn-custom sec3">More about the author</a>
                     </div>
                 </div>
@@ -146,12 +140,13 @@
                     </div>
                 </div>
 
-                @foreach($popular_books as $popular_book)
+                @foreach($popular_books as $key => $popular_book)
                     <div class="col-lg-3" data-aos="fade-up">
+                        <a href="{{route('front.bookDetail', $popular_book->id)}}">
                         <div class="sec6-opt">
                             <div class="sec6-opt-img">
                                 <figure>
-                                    <img src="{{asset($popular_book->image ?? 'images/book5.png')}}" class="img-fluid" alt="{{$popular_book->alt_tag}}">
+                                    <img data-src="{{asset($popular_book->image ?? 'images/book5.png')}}" class="img-fluid lazy" alt="{{$popular_book->alt_tag}}">
                                 </figure>
                             </div>
                             <!-- <div class="sec6-opt-text">
@@ -167,6 +162,7 @@
                                 </div>
                             </div> -->
                         </div>
+                        </a>
                     </div>
                 @endforeach
 
@@ -175,32 +171,82 @@
         </div>
     </section>
 
-    <section class="section7">
-        <div class="container-fluid">
+    <!--<section class="section7">-->
+    <!--    <div class="container-fluid">-->
+    <!--        <div class="row">-->
+    <!--            <div class="col-lg-12">-->
+    <!--                <div class="sec7-text">-->
+    <!--                    <h1>New Audiobook</h1>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <div class="row align-items-center">-->
+    <!--            <div class="col-lg-6" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">-->
+    <!--                <div class="sec7-text">-->
+    <!--                    <h1 class="comming">Comming <span class="d-block">Soon<span></h1>-->
+    <!--                </div>-->
+    <!--            </div>-->
+
+    <!--            <div class="col-lg-6" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">-->
+    <!--                <div class="sec7-img-book">-->
+    <!--                    <figure>-->
+    <!--                        <img data-src="{{asset('images/old-person.webp')}}" class="img-fluid lazy" alt="Boy">-->
+    <!--                    </figure>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</section>-->
+    
+    
+    <section class="section3" id="about-sec">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="sec7-text">
-                        <h1>New Audiobook</h1>
+               
+                <div class="col-lg-6" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                    <div class="sec3-text">
+                        
+                        <h1 class="lax lax_preset_fadeIn:50:100 lax_preset_spin"> The Education of Joshua Chastain </h1>
+
+                        <h2 style="color: #8e8d8d;"> A Gay Mormon Memoir </h2>
+                        <br>
+                        <h3 style="color: #8e8d8d;"> By: Nicolas Shumway </h3> 
+                        <h3 style="color: #8e8d8d;">Narrated by: Ron Cook</h3>
+                        <h3 style="color: #8e8d8d;">Length: 11 hrs and 37 mins </h3>
+                        
+                        <br>
+                        
+                        <audio controls controlsList="nodownload noplaybackrate nofullscreen">  
+                            <source src="{{ asset('audio/EJC_Part_1_Chapter_2.mp3') }}" type="audio/ogg">
+                        </audio>
+                        
+                        <br>
+                        <br>
+                        <a href="https://www.amazon.com/Education-Joshua-Chastain-Mormon-Memoir/dp/B0D43DJPVX/" target="_blank" class="btn btn-custom sec3">Purchase Audio Book</a>
+                        
+                        
                     </div>
+                    
+                    
+                    
                 </div>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
-                    <div class="sec7-text">
-                        <h1 class="comming">Comming <span class="d-block">Soon<span></h1>
+                
+                 <div class="col-lg-6" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                    <div class="sec3-img">
+                        <div class="sec3-img-man">
+                            <figure>
+                                <img data-src="{{asset('audio/nicolas-audiobook2.jpg')}}" class="img-fluid lazy" alt="Nicolas Shumway"> 
+                            </figure>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-lg-6" data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
-                    <div class="sec7-img-book">
-                        <figure>
-                            <img src="{{asset('images/old-person.webp')}}" class="img-fluid" alt="Boy">
-                        </figure>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
+
+    
 
 @endsection
 

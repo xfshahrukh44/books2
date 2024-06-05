@@ -37,16 +37,16 @@
     <section class="section5 back-books">
         <div class="container-fluid">
             <div class="row align-items-center">
-                @foreach($books as $book)
+                @foreach($books as $key => $book)
                     <div class="col-lg-6">
                         <div class="now-noval">
                             <h2 class="italic-font">{{$book->title}}</h2>
 {{--                            <p>The Invention of Argentina was published in 1991 by the University of California Press. A Spanish translation was published in Argentina by EMECE/Planeta in 1993, translated by the distinguished Argentine novelist, César Aira. With the slightly expanded title of La invención de la Argentina: Historia de una Idea, the Spanish edition was updated, corrected, and somewhat expanded in 2005.</p>--}}
                             {!! $book->ellipsified_description() !!}
                             <div class="first-book-noval btn">
-                                <a href="{{route('front.bookDetail', $book->id)}}" class="btn btn-custom black">Read More</a>
+                                <a href="{{route('front.bookDetail', $book->id)}}" class="btn btn-custom black">Read Mor terte</a>
                                 @if(!is_null($book->amazon))
-                                    <a target="_blank" href="{{$book->id->amazon}}" class="btn btn-custom black">Amazon</a>
+                                    <a target="_blank" href="{{$book->amazon}}" class="btn btn-custom black">Amazon</a>
                                 @endif
                             </div>
                         </div>
@@ -69,5 +69,9 @@
 @endsection
 
 @section('js')
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+        
+         
+        
+    </script>
 @endsection

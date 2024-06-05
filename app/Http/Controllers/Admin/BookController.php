@@ -77,7 +77,7 @@ class BookController extends Controller
             $this->validate($request, [
 			'title' => 'required',
 			'description' => 'required',
-			'image' => 'required'
+// 			'image' => 'required'
 		]);
 
             $book = new Book($request->all());
@@ -85,15 +85,10 @@ class BookController extends Controller
             if ($request->hasFile('image')) {
 
                 $file = $request->file('image');
-                
-                //make sure yo have image folder inside your public
-                $book_path = 'uploads/books/';
-                $fileName = $file->getClientOriginalName();
-                $profileImage = date("Ymd").$fileName.".".$file->getClientOriginalExtension();
-
-                Image::make($file)->save(public_path($book_path) . DIRECTORY_SEPARATOR. $profileImage);
-
-                $book->image = $book_path.$profileImage;
+                $imagename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->move(public_path('uploads/books'), $imagename);
+            
+                $book->image = 'uploads/books/' . $imagename;
             }
             
             $book->save();
@@ -151,31 +146,42 @@ class BookController extends Controller
             $this->validate($request, [
 			'title' => 'required',
 			'description' => 'required',
-			'image' => 'required'
+// 			'image' => 'required'
 		]);
             $requestData = $request->all();
             
 
+        // if ($request->hasFile('image')) {
+            
+        //     $book = Book::where('id', $id)->first();
+        //     $image_path = public_path($book->image); 
+            
+        //     if(File::exists($image_path)) {
+        //         File::delete($image_path);
+        //     }
+
+        //     $file = $request->file('image');
+        //     $fileNameExt = $request->file('image')->getClientOriginalName();
+        //     $fileNameForm = str_replace(' ', '_', $fileNameExt);
+        //     $fileName = pathinfo($fileNameForm, PATHINFO_FILENAME);
+        //     $fileExt = $request->file('image')->getClientOriginalExtension();
+        //     $fileNameToStore = $fileName.'_'.time().'.'.$fileExt;
+        //     $pathToStore = public_path('uploads/books/');
+        //     Image::make($file)->save($pathToStore . DIRECTORY_SEPARATOR. $fileNameToStore);
+
+        //      $requestData['image'] = 'uploads/books/'.$fileNameToStore;               
+        // }
         if ($request->hasFile('image')) {
-            
-            $book = Book::where('id', $id)->first();
-            $image_path = public_path($book->image); 
-            
-            if(File::exists($image_path)) {
-                File::delete($image_path);
+                $book = Book::where('id', $id)->first();
+                if (isset($book->image) && file_exists(public_path($book->image))) {
+                    unlink(public_path($book->image));
+                }
+                $file = $request->file('image');
+                $imagename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->move(public_path('uploads/books/'), $imagename);
+                $requestData['image'] = 'uploads/books/'.$imagename;
+
             }
-
-            $file = $request->file('image');
-            $fileNameExt = $request->file('image')->getClientOriginalName();
-            $fileNameForm = str_replace(' ', '_', $fileNameExt);
-            $fileName = pathinfo($fileNameForm, PATHINFO_FILENAME);
-            $fileExt = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$fileExt;
-            $pathToStore = public_path('uploads/books/');
-            Image::make($file)->save($pathToStore . DIRECTORY_SEPARATOR. $fileNameToStore);
-
-             $requestData['image'] = 'uploads/books/'.$fileNameToStore;               
-        }
 
 
             $book = Book::findOrFail($id);
